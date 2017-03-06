@@ -1,0 +1,33 @@
+@(userForm: Form[models.UserData])(implicit messages: Messages)
+
+@main("Sign Up") {
+        @helper.form(action = routes.LoginController.createUser()) {
+        <div class = "container">
+            <div class = "row">
+                <div class ="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <h2>Sign Up</h2>
+                    @helper.inputText(userForm("firstName") ,'_label-> "FirstName:")
+                    @helper.inputText(userForm("middleName"),'_label-> "MiddleName:")
+                    @helper.inputText(userForm("lastName"),'_label-> "LastName:")
+                    @helper.inputText(userForm("email"),'_label-> "Email Id:")
+                    @helper.inputText(userForm("contact"),'_label-> "Contact:")
+                    @helper.inputText(userForm("age"),'_label-> "Age:")
+                    @helper.inputText(userForm("address.city"),'_label-> "City:")
+                    @helper.inputText(userForm("address.state"),'_label-> "State:")
+                    @helper.inputRadioGroup(userForm("gender"),
+                    options = List("Male"->"Male","Female"->"Female"), '_label->"Gender",
+                    '_error -> userForm("gender").error.map(_.withMessage("select gender")))
+                    @helper.inputCheckboxGroup(
+                    userForm("hobbies"),
+                    options = List("Reading" -> "Reading", "Music" -> "Music", "Cooking" -> "Cooking","Gymming" -> "Gymming"),
+                    '_label -> "Hobbies",
+                    '_error -> userForm("hobbies").error.map(_.withMessage("Select One Or More Hobbies")))
+                    @helper.inputPassword(userForm("password"),'_label-> "Password:")
+                    @helper.inputPassword(userForm("confirmPassword"),'_label-> "Confirm Password:")
+                    <button type="submit" class = "btn btn-primary">Sign Up</button>
+                </div>
+            </div>
+        </div>
+
+    }
+}

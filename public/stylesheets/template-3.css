@@ -1,0 +1,100 @@
+.navbar-nav {
+    text-align: center;
+    > li {
+      float: none;
+      display: inline-block;
+    }
+  }
+h3{
+    font-size: 20px;
+    font-family:Verdana;
+    color: #515151;
+}
+img {
+     width: 40%;
+}
+	    
+.carousel-inner {
+      background-color: #C1E0FF;
+}
+    
+.carousel-caption {
+      font-size: 2em;
+      right: 10%;
+      left: 60%;
+      top: 30%;
+      bottom: 30%;
+      text-align: left;
+      text-shadow: none;
+}
+.carousel-indicators{
+      font-size: 2em;
+      bottom: -1%;
+      text-align: left;
+      text-shadow: none;
+}
+
+.carousel.vertical .carousel-inner {
+  height: 100%;
+}
+.carousel.vertical .item {
+  -webkit-transition: 0.6s ease-in-out top;
+  -moz-transition:    0.6s ease-in-out top;
+  -ms-transition:     0.6s ease-in-out top;
+  -o-transition:      0.6s ease-in-out top;
+  left:               0;
+}
+.carousel.vertical .active,
+.carousel.vertical .next.left,
+.carousel.vertical .prev.right    { top:     0; }
+.carousel.vertical .next,
+.carousel.vertical .active.right  { top:  100%; }
+.carousel.vertical .prev,
+.carousel.vertical .active.left   { top: -100%; }   
+.w3-btn, .w3-btn-block {
+    border: none;
+    display: inline-block;
+    outline: 0;
+    padding: 6px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none!important;
+    color: #fff;
+    background-color: #777;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.w3-btn: hover {
+        background-color: firebrick;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.drop1 {
+    list-style: none;
+    text-align: left;
+	width: auto; /* change auto value with 200px if you want a bigger menu */
+	display: none;
+	background: #5DBB04;
+	position: absolute;
+	top: 100%;
+	left: 0;
+}

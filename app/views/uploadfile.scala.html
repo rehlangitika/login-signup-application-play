@@ -1,0 +1,12 @@
+@main("Your Picture") {
+    @helper.form(action = routes.LoginController.upload(), 'enctype -> "multipart/form-data") {
+        <div class = "container">
+            <h1>Upload Your Picture</h1>
+            <input type="file" name="picture">
+            <br/>
+            <p>
+                <input type="submit" class ="btn btn-success">
+            </p>
+        </div>
+    }
+}

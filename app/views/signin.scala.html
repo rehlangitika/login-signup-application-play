@@ -1,0 +1,16 @@
+@(signInForm: Form[models.SignedUserData])(implicit messages: Messages)
+
+@main("Sign In") {
+    @helper.form(action = routes.LoginController.getAccess()) {
+    <div class = "container">
+        <div class = "row">
+            <div class ="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <h2>Sign In</h2>
+                @helper.inputText(signInForm("email"))
+                @helper.inputPassword(signInForm("password"))
+                <button type="submit" class = "btn btn-primary">Sign In</button>
+            </div>
+        </div>
+    </div>
+  }
+}
