@@ -12,14 +12,16 @@ GET     /message                    controllers.AsyncController.message
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
-POST    /register                    controllers.LoginController.createUser
+POST    /register                    controllers.RegisterController.createUser
 
-GET     /register                    controllers.LoginController.register
+GET     /register                    controllers.RegisterController.register
 
 POST    /signin                      controllers.LoginController.getAccess
 
 GET     /signin                      controllers.LoginController.signIn
 
-POST    /upload                      controllers.LoginController.upload
+POST    /upload                      controllers.ProfileController.upload
 
-GET     /upload                      controllers.LoginController.fileUpload
+GET     /upload                      controllers.ProfileController.fileUpload
+
+GET     /profile                     controllers.ProfileController.profile

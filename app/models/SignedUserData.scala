@@ -1,3 +1,3 @@
 package models
 
-case class SignedUserData(email: String, password: String)
+case class SignedUserData(userName: String, password: String)

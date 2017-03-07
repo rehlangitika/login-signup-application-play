@@ -1,7 +1,7 @@
 @(userForm: Form[models.UserData])(implicit messages: Messages)
 
 @main("Sign Up") {
-        @helper.form(action = routes.LoginController.createUser()) {
+        @helper.form(action = routes.RegisterController.createUser()) {
         <div class = "container">
             <div class = "row">
                 <div class ="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -22,6 +22,7 @@
                     options = List("Reading" -> "Reading", "Music" -> "Music", "Cooking" -> "Cooking","Gymming" -> "Gymming"),
                     '_label -> "Hobbies",
                     '_error -> userForm("hobbies").error.map(_.withMessage("Select One Or More Hobbies")))
+                    @helper.inputText(userForm("userName"), '_label-> "UserName:")
                     @helper.inputPassword(userForm("password"),'_label-> "Password:")
                     @helper.inputPassword(userForm("confirmPassword"),'_label-> "Confirm Password:")
                     <button type="submit" class = "btn btn-primary">Sign Up</button>
