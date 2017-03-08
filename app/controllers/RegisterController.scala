@@ -3,6 +3,7 @@ package controllers
 import javax.inject.Inject
 
 import com.google.inject.name.Named
+import org.mindrot.jbcrypt.BCrypt
 import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.mvc.{Action, Controller}
 import services.UserService
@@ -20,9 +21,11 @@ class RegisterController @Inject()(@Named("cache")userService: UserService)(val 
       success = {
         implicit registeredUser =>
           println(checkUserType)
-          val user = userService.storeUserData(registeredUser)
+          val passwordHash = BCrypt.hashpw(registeredUser.password, BCrypt.gensalt())
+          val newUser = userService.getUser(registeredUser,passwordHash)
+          val user = userService.storeUserData(newUser)
           //println("1." + registeredUser)
-          Redirect(routes.ProfileController.profile()).withSession("registeredUsers" -> registeredUser.userName)
+          Redirect(routes.ProfileController.profile()).withSession("registeredUsers" -> newUser.userName)
       }
     )
   }

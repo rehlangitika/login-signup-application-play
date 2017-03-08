@@ -4,18 +4,14 @@ package services
 import javax.inject.Inject
 
 import models.{Address, SignedUserData, UserData}
+import org.mindrot.jbcrypt.BCrypt
 import play.api.cache.CacheApi
-
-import scala.collection.mutable.ListBuffer
-
 
 class CacheUserService @Inject()(cache: CacheApi) extends UserService{
 
-  val usersList = new ListBuffer[String]
-  val signedUsersList = new ListBuffer[SignedUserData]
   def checkLoggedInUser(newUser: SignedUserData): Boolean = {
     cache.get[UserData](newUser.userName) match {
-      case Some(data) => data.password.equals(newUser.password)
+      case Some(data) => BCrypt.checkpw(newUser.password,data.password)
       case None => false
     }
   }
@@ -31,6 +27,13 @@ class CacheUserService @Inject()(cache: CacheApi) extends UserService{
   def storeUserData(registeredUser: UserData) = {
     cache.set(registeredUser.userName, registeredUser)
     registeredUser
+  }
+
+  def getUser(registeredUser: UserData, passwordHash: String) = {
+    UserData(registeredUser.firstName, registeredUser.middleName, registeredUser.lastName,
+      registeredUser.email,registeredUser.contact,registeredUser.age,
+      registeredUser.address,registeredUser.gender,registeredUser.hobbies,
+      registeredUser.userName, passwordHash,passwordHash,registeredUser.isAdmin,registeredUser.suspend)
   }
 
 }
