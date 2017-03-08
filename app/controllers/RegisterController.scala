@@ -19,6 +19,7 @@ class RegisterController @Inject()(@Named("cache")userService: UserService)(val 
       },
       success = {
         implicit registeredUser =>
+          println(checkUserType)
           val user = userService.storeUserData(registeredUser)
           //println("1." + registeredUser)
           Redirect(routes.ProfileController.profile()).withSession("registeredUsers" -> registeredUser.userName)
@@ -29,5 +30,12 @@ class RegisterController @Inject()(@Named("cache")userService: UserService)(val 
   /*Action for uploading the SignUp form */
   def register() = Action { implicit request =>
     Ok(views.html.user(Mappings.userForm))
+  }
+
+  def checkUserType: String = {
+    if(play.Play.application().configuration().getString("Type") == "Admin") {
+      s"Admin"
+    }
+    else s"Normal User"
   }
 }

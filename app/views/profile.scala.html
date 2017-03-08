@@ -4,7 +4,6 @@
     @helper.form(action = routes.HomeController.index(), 'enctype -> "multipart/form-data") {
         <div class = "container">
             <h1>Your Profile</h1>
-            <h2>Welcome @session.get("memberSession")</h2>
             <h3>FirstName: @user.firstName</h3>
             <h3>MiddleName: @user.middleName</h3>
             <h3>LastName: @user.lastName</h3>

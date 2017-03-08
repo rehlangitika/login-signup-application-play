@@ -22,7 +22,9 @@ object Mappings {
       "hobbies" -> list(text),
       "userName" -> nonEmptyText,
       "password" -> nonEmptyText(maxLength = 8),
-      "confirmPassword" -> nonEmptyText(maxLength = 8)
+      "confirmPassword" -> nonEmptyText(maxLength = 8),
+      "isAdmin" -> boolean,
+      "status" -> boolean
     )(UserData.apply)(UserData.unapply) verifying("Passwords don't match", data => data.password.equals(data.confirmPassword))
   )
 

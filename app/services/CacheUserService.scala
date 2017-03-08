@@ -6,9 +6,13 @@ import javax.inject.Inject
 import models.{Address, SignedUserData, UserData}
 import play.api.cache.CacheApi
 
+import scala.collection.mutable.ListBuffer
+
 
 class CacheUserService @Inject()(cache: CacheApi) extends UserService{
 
+  val usersList = new ListBuffer[String]
+  val signedUsersList = new ListBuffer[SignedUserData]
   def checkLoggedInUser(newUser: SignedUserData): Boolean = {
     cache.get[UserData](newUser.userName) match {
       case Some(data) => data.password.equals(newUser.password)
@@ -20,7 +24,7 @@ class CacheUserService @Inject()(cache: CacheApi) extends UserService{
     val user = cache.get[UserData](userName)
     user match {
       case Some(data) if userName.equals(data.userName) => data
-      case None => UserData("", None, "", "", "", 0, Address("", ""), "", List(""), "", "", "")
+      case None => UserData("", None, "", "", "", 0, Address("", ""), "", List(""), "", "", "",false,false)
     }
   }
 
