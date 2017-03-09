@@ -11,4 +11,6 @@ trait UserService {
   def checkLoggedInUser(newUser: SignedUserData): Boolean
 
   def getUser(registeredUser: UserData, passwordHash: String): UserData
+
+  def getListOfUsers(): List[UserData]
 }

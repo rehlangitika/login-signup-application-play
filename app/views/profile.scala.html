@@ -15,9 +15,12 @@
             <h3>State: @user.address.state</h3>
             <h3>Gender: @user.gender</h3>
             <h3>Hobbies: @user.hobbies</h3>
+            <h3>Admin: @user.isAdmin</h3>
             <a type = "button" class = "btn btn-warning" href="/upload">Upload Picture</a>
-            <button type = "submit" class = "btn btn-primary">Sign Out</button>
-            <a type = "button" class = "btn btn-success">Management</a>
+            <a type = "submit" class = "btn btn-primary" href = "@routes.LoginController.signout()">Sign Out</a>
+            @if(user.isAdmin == true) {
+            <a type = "button" class = "btn btn-success" href = "@routes.ManagementController.management()">Management</a>
+            }
         </div>
    }
 }

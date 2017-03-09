@@ -33,9 +33,17 @@ class ProfileController @Inject()(@Named("cache") userService: UserService)(val 
     implicit request =>
       request.session.get("registeredUsers").map {
         userName =>
-          val data = userService.getRegisteredUser(userName)
-          Ok(views.html.profile(data))
+          val regUser = userService.getRegisteredUser(userName)
+          Ok(views.html.profile(regUser))
       }.getOrElse(Ok(views.html.user(Mappings.userForm)))
+  }
+
+
+  def checkUserType: String = {
+    if (play.Play.application().configuration().getString("Type") == "Admin") {
+      s"Admin"
+    }
+    else s"Normal User"
   }
 
 }

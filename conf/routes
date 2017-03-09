@@ -25,3 +25,11 @@ POST    /upload                      controllers.ProfileController.upload
 GET     /upload                      controllers.ProfileController.fileUpload
 
 GET     /profile                     controllers.ProfileController.profile
+
+GET     /management                  controllers.ManagementController.management
+
+GET     /signout                     controllers.LoginController.signout
+
+GET     /resume                      controllers.ManagementController.resume(userName: String)
+
+GET     /suspend                     controllers.ManagementController.suspend(userName: String)

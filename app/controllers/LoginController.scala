@@ -8,7 +8,7 @@ import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.mvc.{Action, Controller}
 import services.UserService
 
-class LoginController @Inject()(@Named("cache")userService: UserService)(val messagesApi: MessagesApi) extends Controller with I18nSupport {
+class LoginController @Inject()(@Named("cache") userService: UserService)(val messagesApi: MessagesApi) extends Controller with I18nSupport {
 
   /*Action for providing access to the user for successful login and redirecting to profile page */
   def getAccess() = Action {
@@ -16,17 +16,14 @@ class LoginController @Inject()(@Named("cache")userService: UserService)(val mes
       val newSignInForm = Mappings.signInForm.bindFromRequest()
       newSignInForm.fold(
         hasErrors => {
-          //println(hasErrors)
           Redirect(routes.LoginController.signIn()).flashing("error" -> "Fill Email Id and Password")
         },
         success = {
           implicit newUser: SignedUserData =>
-            //println("1l" + newUser)
             if (userService.checkLoggedInUser(newUser)) {
               Redirect(routes.ProfileController.profile()).withSession("registeredUsers" -> newUser.userName)
             }
             else {
-              //println("---------------")
               Redirect(routes.LoginController.signIn()).flashing("error" -> "Invalid User")
             }
         }
@@ -38,4 +35,9 @@ class LoginController @Inject()(@Named("cache")userService: UserService)(val mes
   def signIn() = Action {
     implicit request => Ok(views.html.signin(Mappings.signInForm))
   }
+
+  def signout() = Action {
+    implicit request => Redirect(routes.HomeController.index()).withNewSession
+  }
+
 }

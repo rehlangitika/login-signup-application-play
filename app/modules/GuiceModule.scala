@@ -11,6 +11,6 @@ class GuiceModule(environment: Environment, configuration: Configuration ) exten
 
     bind(classOf[UserService])
       .annotatedWith(Names.named("cache"))
-      .to(classOf[CacheUserService])
+      .to(classOf[CacheUserService]).asEagerSingleton()
   }
 }
